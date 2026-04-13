@@ -1,0 +1,9 @@
+import pandas as pd
+
+FILE = "JP Morgan April June 2025.xlsx"   # path in your repo
+SHEET = 0                                 # or "Sheet1"
+COL = "Request Batch ID"                  # exact column header
+
+df = pd.read_excel(FILE, sheet_name=SHEET)
+unique_count = df[COL].dropna().nunique()
+print(f"Unique {COL}: {unique_count}")
