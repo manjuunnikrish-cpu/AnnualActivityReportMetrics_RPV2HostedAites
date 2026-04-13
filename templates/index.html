@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annual Activity Report Metrics — Excel Query</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>📊 Annual Activity Report Metrics</h1>
+    <p class="subtitle">Upload your Excel / CSV file and ask questions about your data</p>
+  </header>
+
+  <main>
+    <!-- ── Upload Section ─────────────────────────────────────── -->
+    <section class="card" id="upload-section">
+      <h2>1 · Upload Your File</h2>
+      <div
+        id="drop-zone"
+        class="drop-zone"
+        role="button"
+        tabindex="0"
+        aria-label="Drop Excel or CSV file here, or click to browse"
+      >
+        <span class="drop-icon">📁</span>
+        <p>Drag &amp; drop your <strong>.xlsx</strong>, <strong>.xls</strong>, or <strong>.csv</strong> file here</p>
+        <p class="or">— or —</p>
+        <label for="file-input" class="btn btn-primary">Browse File</label>
+        <input type="file" id="file-input" accept=".xlsx,.xls,.csv" hidden />
+      </div>
+      <div id="upload-status" class="status-msg hidden"></div>
+    </section>
+
+    <!-- ── Dataset Info ───────────────────────────────────────── -->
+    <section class="card hidden" id="dataset-section">
+      <h2>2 · Dataset Overview</h2>
+      <div id="dataset-meta" class="meta-bar"></div>
+      <div class="table-wrapper">
+        <table id="preview-table">
+          <thead id="preview-thead"></thead>
+          <tbody id="preview-tbody"></tbody>
+        </table>
+      </div>
+      <p class="note">Showing first 10 rows · Upload a new file to replace.</p>
+    </section>
+
+    <!-- ── Ask Section ────────────────────────────────────────── -->
+    <section class="card hidden" id="ask-section">
+      <h2>3 · Ask a Question</h2>
+      <div class="chips">
+        <span class="chip-label">Quick questions:</span>
+        <button class="chip" data-q="How many rows are there?">Row count</button>
+        <button class="chip" data-q="Show me the columns">Columns</button>
+        <button class="chip" data-q="Show first 10 rows">Preview</button>
+        <button class="chip" data-q="Give me a summary of the data">Summary</button>
+        <button class="chip" data-q="What is the total for each numeric column?">Totals</button>
+        <button class="chip" data-q="What is the average for each numeric column?">Averages</button>
+      </div>
+      <div class="ask-row">
+        <input
+          type="text"
+          id="question-input"
+          placeholder="e.g. What is the total of Clicks? Show me rows where Status is Active."
+          autocomplete="off"
+        />
+        <button id="ask-btn" class="btn btn-primary">Ask ➜</button>
+      </div>
+    </section>
+
+    <!-- ── Answer Section ─────────────────────────────────────── -->
+    <section class="card hidden" id="answer-section">
+      <h2>Answer</h2>
+      <p id="answer-text" class="answer-text"></p>
+      <div class="table-wrapper hidden" id="answer-table-wrapper">
+        <table id="answer-table">
+          <thead id="answer-thead"></thead>
+          <tbody id="answer-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Annual Activity Report Metrics · Customer Site Click Data</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
